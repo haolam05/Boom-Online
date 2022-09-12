@@ -51,31 +51,36 @@ class SetUp
         ### set moving keys: left right up down
         @players[0].l_key = Gosu::KbLeft ; @players[0].r_key =  Gosu::KbRight ; @players[0].u_key = Gosu::KbUp ; @players[0].d_key = Gosu::KbDown
         @players[1].l_key = Gosu::KbA    ; @players[1].r_key =  Gosu::KbD     ; @players[1].u_key = Gosu::KbW  ; @players[1].d_key = Gosu::KbS
+
         ### set boom key
         @players[0].b_key = Gosu::KB_RIGHT_SHIFT
         @players[1].b_key = Gosu::KB_LEFT_SHIFT
+
         ### set boom length
-        @players[0].boom_length = 5
+        @players[0].boom_length = 1
         @players[1].boom_length = 1
+
         ### set default boom's quantity
-        @players[0].curr_boom_quantity = 20
+        @players[0].curr_boom_quantity = 2
         @players[1].curr_boom_quantity = 2
+
         ### set speed
-        @players[0].speed = 10
-        @players[1].speed = 5
+        @players[0].speed = 1
+        @players[1].speed = 1
+
         ### set item keys
         @players[0].life_key        = Gosu::KbN              ; @players[0].items[Gosu::KbN]              = PlayerItem.new("life", "./images/items/life.png")                       ; @players[0].items_quantity[Gosu::KbN]              = 1
         @players[1].life_key        = Gosu::KB_1             ; @players[1].items[Gosu::KB_1]             = PlayerItem.new("life", "./images/items/life.png")                       ; @players[1].items_quantity[Gosu::KB_1]             = 1
         @players[0].boom_shield_key = Gosu::KbM              ; @players[0].items[Gosu::KbM]              = PlayerItem.new("boom_shield", "./images/items/boom_shield.png", 5_000)  ; @players[0].items_quantity[Gosu::KbM]              = 2
         @players[1].boom_shield_key = Gosu::KB_2             ; @players[1].items[Gosu::KB_2]             = PlayerItem.new("boom_shield", "./images/items/boom_shield.png", 5_000)  ; @players[1].items_quantity[Gosu::KB_2]             = 2
-        @players[0].spring_key      = Gosu::KB_COMMA         ; @players[0].items[Gosu::KB_COMMA]         = PlayerItem.new("spring", "./images/items/spring.png")                   ; @players[0].items_quantity[Gosu::KB_COMMA]         = 30
+        @players[0].spring_key      = Gosu::KB_COMMA         ; @players[0].items[Gosu::KB_COMMA]         = PlayerItem.new("spring", "./images/items/spring.png")                   ; @players[0].items_quantity[Gosu::KB_COMMA]         = 3
         @players[1].spring_key      = Gosu::KB_3             ; @players[1].items[Gosu::KB_3]             = PlayerItem.new("spring", "./images/items/spring.png")                   ; @players[1].items_quantity[Gosu::KB_3]             = 3
-        @players[0].items_radar_key = Gosu::KB_PERIOD        ; @players[0].items[Gosu::KB_PERIOD]        = PlayerItem.new("items_radar", "./images/items/items_radar.png", 220_000) ; @players[0].items_quantity[Gosu::KB_PERIOD]        = 1
-        @players[1].items_radar_key = Gosu::KB_4             ; @players[1].items[Gosu::KB_4]             = PlayerItem.new("items_radar", "./images/items/items_radar.png", 20_000) ; @players[1].items_quantity[Gosu::KB_4]             = 0
-        @players[0].booms_radar_key = Gosu::KB_SLASH         ; @players[0].items[Gosu::KB_SLASH]         = PlayerItem.new("booms_radar", "./images/items/booms_radar.png", 220_000) ; @players[0].items_quantity[Gosu::KB_SLASH]         = 1
-        @players[1].booms_radar_key = Gosu::KB_5             ; @players[1].items[Gosu::KB_5]             = PlayerItem.new("booms_radar", "./images/items/booms_radar.png", 20_000) ; @players[1].items_quantity[Gosu::KB_5]             = 0
-        @players[0].dart_key        = Gosu::KB_RIGHT_CONTROL ; @players[0].items[Gosu::KB_RIGHT_CONTROL] = PlayerItem.new("dart", "./images/items/dart.png", 0_001)                ; @players[0].items_quantity[Gosu::KB_RIGHT_CONTROL] = 20
-        @players[1].dart_key        = Gosu::KB_6             ; @players[1].items[Gosu::KB_6]             = PlayerItem.new("dart", "./images/items/dart.png", 0_001)                ; @players[1].items_quantity[Gosu::KB_6]             = 0
+        @players[0].items_radar_key = Gosu::KB_PERIOD        ; @players[0].items[Gosu::KB_PERIOD]        = PlayerItem.new("items_radar", "./images/items/items_radar.png", 20_000) ; @players[0].items_quantity[Gosu::KB_PERIOD]        = 4
+        @players[1].items_radar_key = Gosu::KB_4             ; @players[1].items[Gosu::KB_4]             = PlayerItem.new("items_radar", "./images/items/items_radar.png", 20_000) ; @players[1].items_quantity[Gosu::KB_4]             = 4
+        @players[0].booms_radar_key = Gosu::KB_SLASH         ; @players[0].items[Gosu::KB_SLASH]         = PlayerItem.new("booms_radar", "./images/items/booms_radar.png", 20_000) ; @players[0].items_quantity[Gosu::KB_SLASH]         = 5
+        @players[1].booms_radar_key = Gosu::KB_5             ; @players[1].items[Gosu::KB_5]             = PlayerItem.new("booms_radar", "./images/items/booms_radar.png", 20_000) ; @players[1].items_quantity[Gosu::KB_5]             = 5
+        @players[0].dart_key        = Gosu::KB_RIGHT_CONTROL ; @players[0].items[Gosu::KB_RIGHT_CONTROL] = PlayerItem.new("dart", "./images/items/dart.png", 0_001)                ; @players[0].items_quantity[Gosu::KB_RIGHT_CONTROL] = 6
+        @players[1].dart_key        = Gosu::KB_6             ; @players[1].items[Gosu::KB_6]             = PlayerItem.new("dart", "./images/items/dart.png", 0_001)                ; @players[1].items_quantity[Gosu::KB_6]             = 6
     end
 
     # pciks battle option based on user's choice("solo"/"team")
