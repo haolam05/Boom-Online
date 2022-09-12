@@ -164,7 +164,7 @@ class Map
             player.y = y
         end
     end
-    
+
 private
     # returns an array of all booms from all players(excluding boss)
     def player_booms
@@ -184,11 +184,11 @@ private
 
     # generate a map based on current level
     def generate_map(type)
-        @window.caption = "Boom Online --- Level #{@level <= 9 ? 0 : ""}#{@level}"
-
         case type
         when "solo" ; generate_random_obstacles ; generate_random_player_positions
         when "team" # fight boss
+            @window.caption = "Boom Online --- Level #{@level <= 9 ? 0 : ""}#{@level}"
+
             case @level
             when 1  ; PirateBossMapLevel1.new(self).generate_level_1_map
             when 2  ; PirateBossMapLevel2.new(self).generate_level_2_map  
