@@ -31,7 +31,7 @@ class PirateBossMapLevel9 < PirateBossMap
                 PirateBossMapLevel4.new(@map).generate_level_4_move(opponent)
             end
         elsif @map.opponent_players[-1] && @map.opponent_players[-1].x >= @map.screen_w - @map.tile_w && @map.opponent_players[-1].y <= 0                                   # boss is now summon
-                @map.opponent_players.each { |opponent| opponent.speed = 5 ; opponent.chasing_speed = 10 ; opponent.curr_direction = ["l", "r", "u", "d"].sample }
+                @map.opponent_players.each { |opponent| opponent.speed = 5 ; opponent.chasing_speed = 10 ; opponent.change_direction(["l", "r", "u", "d"].sample, @map.window) }
                 @map.obstacles   = []
                 @map.opponent_players <<
                     PirateBoss.new(
@@ -52,15 +52,15 @@ class PirateBossMapLevel9 < PirateBossMap
         else                                                                                                                                                                # boss is not yet summon
             @map.opponent_players.each do |opponent|
 
-                if    opponent.y + opponent.height >= @map.screen_h && opponent.curr_direction == "d" ; opponent.curr_direction = "r" # bottom of screen
-                elsif opponent.y <= 0                               && opponent.curr_direction == "u" ; opponent.curr_direction = "r" # top    of screen
+                if    opponent.y + opponent.height >= @map.screen_h && opponent.curr_direction == "d" ; opponent.change_direction("r", @map.window) # bottom of screen
+                elsif opponent.y <= 0                               && opponent.curr_direction == "u" ; opponent.change_direction("r", @map.window) # top    of screen
                 elsif opponent.obstacle?(@map.obstacles, opponent.curr_direction)
                     if opponent.curr_direction == "r"
-                        opponent.curr_direction = (!opponent.obstacle?(@map.obstacles, "u") && opponent.y > 0) ? "u" : "d"
+                        opponent.change_direction((!opponent.obstacle?(@map.obstacles, "u") && opponent.y > 0) ? "u" : "d", @map.window)
                     end
                 end
 
-                opponent.move(@map.obstacles, @map.window) 
+                opponent.move(@map, @map.window) 
             end
         end
     end

@@ -14,6 +14,7 @@ class Player
         @bubble_image                   = Gosu::Image.new(DEFAULT_DYING_BUBBLE_IMG, :tileable => true)
         @l, @r, @u, @d, @b, @got_boom   = false, false, false, false, false, false
         @booms, @items, @items_quantity = [], {}, {}
+        @curr_direction                 = nil
     end
 
     # plants a boom at the position of the player
@@ -174,6 +175,13 @@ class Player
 
     # make a move based on current direction and obstacles
     def move(direction, obstacles, window)
+        if @curr_direction.nil?
+            @curr_direction = direction 
+        elsif @curr_direction != direction
+            @x, @y = window.get_closet_tile_coor(@x, @y)
+            @curr_direction = direction
+        end
+
         speed = (obstacle?(obstacles, direction) ? jump_distance(obstacles, direction, window.screen_w, window.screen_h) : calculate_speed(obstacles, direction, window))
         case direction
         when "l" ; @x -= speed

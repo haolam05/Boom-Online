@@ -3,8 +3,8 @@ DEFAULT_PIRATE_SPEED     = 1
 DEFAULT_PIRATE_DIRECTION = "l"
 
 class Pirate
-    attr_reader :normal_image, :bubble_image, :x, :y
-    attr_accessor :curr_direction, :speed, :chasing_speed, :chasing
+    attr_reader :normal_image, :bubble_image
+    attr_accessor :curr_direction, :speed, :chasing_speed, :chasing, :x, :y
 
     def initialize(x, y, speed = DEFAULT_PIRATE_SPEED, direction = DEFAULT_PIRATE_DIRECTION, chasing_speed = DEFAULT_PIRATE_SPEED)
         @x, @y          = x, y
@@ -36,14 +36,18 @@ class Pirate
     end
 
     # make a move based on given direction
-    def move(obstacles, direction = @curr_direction, window)
-        speed = calculate_speed(obstacles, direction, window)
+    def move(map, direction = @curr_direction, window)
+        speed = calculate_speed(map.obstacles, direction, window)
+        x, y = @x, @y
         case direction
-        when "l" ; @x -= speed
-        when "r" ; @x += speed
-        when "u" ; @y -= speed
-        when "d" ; @y += speed
+        when "l" ; x -= speed
+        when "r" ; x += speed
+        when "u" ; y -= speed
+        when "d" ; y += speed
         end
+
+        # why check again? because while calculating the speed, new non-static obstacles might be added to the obstacles list(ex: boom), so we do not want pirate to move if it is in the middle of a boom
+        @x, @y = x, y if map.obstacles.none? { |obstacle| obstacle.is_a?(Boom) && x.between?(obstacle.x, obstacle.x + obstacle.width) && y.between?(obstacle.y, obstacle.y + obstacle.height) }
     end
 
     # returns true it there is an obstacle in given direction; false otherwise
@@ -74,6 +78,16 @@ class Pirate
     # returns offset y
     def o_y
         height / DEFAULT_MOVE_OFFSET_FACTOR
+    end
+
+    # change current moving direction of the pirate
+    # since booms and walls are fit nicely into tile dimensions, players and pirates can move freely, thus we want to make sure pirate are within tile dimensions when changing direction
+    def change_direction(direction, window)
+        if @curr_direction != direction
+            @x, @y = window.get_closet_tile_coor(@x, @y)
+        end
+
+        @curr_direction = direction
     end
 
 protected

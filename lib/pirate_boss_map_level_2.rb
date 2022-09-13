@@ -67,9 +67,9 @@ class PirateBossMapLevel2 < PirateBossMap
         else
             close_to_player, direction = @map.close_to_players(opponent, scanning_radius)
             if close_to_player
-                opponent.curr_direction = direction
-                opponent.chasing        = true
-                opponent.move(@map.obstacles, @map.window)
+                opponent.change_direction(direction, @map.window)
+                opponent.chasing = true
+                opponent.move(@map, @map.window)
             else
                 PirateBossMapLevel1.new(@map).generate_level_1_move(opponent, 1.5)
             end

@@ -40,19 +40,19 @@ class PirateBossMapLevel1 < PirateBossMap
     def generate_level_1_move(opponent, scanning_radius)
         opponent.chasing = false
 
-        if    opponent.x + opponent.width  >= @map.screen_w && opponent.curr_direction == "r" ; opponent.curr_direction = "l" # right  of screen
-        elsif opponent.x <= 0                               && opponent.curr_direction == "l" ; opponent.curr_direction = "r" # left   of screen
-        elsif opponent.y + opponent.height >= @map.screen_h && opponent.curr_direction == "d" ; opponent.curr_direction = "u" # bottom of screen
-        elsif opponent.y <= 0                               && opponent.curr_direction == "u" ; opponent.curr_direction = "d" # top    of screen
-        elsif opponent.obstacle?(@map.obstacles, opponent.curr_direction) ; opponent.curr_direction = opponent.opposite_direction # obstacles(walls, booms...)
+        if    opponent.x + opponent.width  >= @map.screen_w && opponent.curr_direction == "r" ; opponent.change_direction("l", @map.window) # right  of screen
+        elsif opponent.x <= 0                               && opponent.curr_direction == "l" ; opponent.change_direction("r", @map.window) # left   of screen
+        elsif opponent.y + opponent.height >= @map.screen_h && opponent.curr_direction == "d" ; opponent.change_direction("u", @map.window) # bottom of screen
+        elsif opponent.y <= 0                               && opponent.curr_direction == "u" ; opponent.change_direction("d", @map.window) # top    of screen
+        elsif opponent.obstacle?(@map.obstacles, opponent.curr_direction) ; opponent.change_direction(opponent.opposite_direction, @map.window) # obstacles(walls, booms...)
         else
             close_to_player, direction = @map.close_to_players(opponent, scanning_radius)
             if close_to_player
-                opponent.curr_direction = direction 
+                opponent.change_direction(direction, @map.window)
                 opponent.chasing        = true
             end
         end
             
-        opponent.move(@map.obstacles, @map.window)
+        opponent.move(@map, @map.window)
     end
 end
