@@ -25,7 +25,7 @@ class Map
     attr_reader :background_img, :map_items, :screen_w, :screen_h, :tile_w, :tile_h, :window, :level
     attr_accessor :obstacles, :opponent_players, :empty_positions, :players, :summon_boss
 
-    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 1)
+    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 6)
         @window              = window
         @screen_w, @screen_h = screen_w, screen_h
         @tile_w, @tile_h     = tile_w, tile_h

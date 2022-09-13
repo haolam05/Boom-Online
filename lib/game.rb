@@ -117,9 +117,11 @@ class GameWindow < Gosu::Window
 
   # update game timer, pause if in "pause" state(elapsed time does NOT count into "game time" because game didn't start until we finished setup, BUT elapsed time is counted when window is created)
   def update_timer(just_start = false)
+    @add_on_time = 0 if @add_on_time.nil?
+
     if @game.setup_state == "pause"
       if  @time_since_pause.nil?  # game WAS played and now it is paused
-        @total_time_pause  = 0 if @total_time_pause.nil?
+        @total_time_pause = 0 if @total_time_pause.nil?
         @time_since_pause = Gosu.milliseconds
       end
 
@@ -138,7 +140,11 @@ class GameWindow < Gosu::Window
       Sound.new.game_start.play if @game.setup_state == "start_game"
     end
 
-    @time_since_game_start = Gosu.milliseconds - @time_elapsed - (@total_time_pause.nil? ? 0 : @total_time_pause)  # subtract elapsed time and pause time from the real game time
+    @time_since_game_start = Gosu.milliseconds - @time_elapsed - (@total_time_pause.nil? ? 0 : @total_time_pause) - @add_on_time # subtract elapsed time and pause time from the real game time
+    if @reset_game
+      @add_on_time += @time_since_game_start      
+      @reset_game   = false 
+    end
   end
 
   # update a map(based on current state)
@@ -166,6 +172,10 @@ private
       end
     end
     
+    @reset_game = true
+    @players.each              { |player  | (player.booms  = [] ; player.reset_to_normal_state) if player.is_a?(Player)       }   # remove all booms, including
+    @map.opponent_players.each { |opponent| opponent.booms = []                                 if opponent.is_a?(PirateBoss) }   # that are planted but not yet exploded
+
     sleep(3)  # a little delay is added so that the result won't disaapear too fast
   end
 

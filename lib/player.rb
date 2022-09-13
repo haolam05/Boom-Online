@@ -8,7 +8,7 @@ DEFAULT_MOVE_OFFSET_FACTOR  = 6
 
 class Player
     attr_accessor   :l, :r, :u, :d, :b, :l_key, :r_key, :u_key, :d_key, :b_key, :life_key, :boom_shield_key, :spring_key, :items_radar_key, :booms_radar_key, :dart_key,
-                    :x, :y, :speed, :got_boom, :team_id, :normal_image, :boom_image, :curr_boom_quantity, :boom_length, :items, :items_quantity, :name
+                    :x, :y, :speed, :got_boom, :team_id, :normal_image, :boom_image, :curr_boom_quantity, :boom_length, :items, :items_quantity, :name, :booms
     
     def initialize
         @bubble_image                   = Gosu::Image.new(DEFAULT_DYING_BUBBLE_IMG, :tileable => true)
@@ -253,7 +253,12 @@ class Player
     def o_y
         self.height / DEFAULT_MOVE_OFFSET_FACTOR
     end
-    
+
+    # reset variables to normal state
+    def reset_to_normal_state
+        @time_since_got_boom = nil
+        @got_boom            = false
+    end
 private
     # draw a gray rectangle based on given dimensions and coordinates
     def draw_gray_background(x, y, w, h)
@@ -274,12 +279,6 @@ private
     # get out of water boom using life key
     def use_life
         @items[@life_key].is_activate && @items_quantity[@life_key] > 0
-    end
-
-    # reset variables to normal state
-    def reset_to_normal_state
-        @time_since_got_boom = nil
-        @got_boom            = false
     end
 
     # returns true if the current player is saved by his/her allies
