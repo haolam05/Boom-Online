@@ -26,38 +26,59 @@ DEFAULT_W_IMG_PATH           = "./images/symbols/w.png"
 DEFAULT_COLON_IMG_PATH       = "./images/symbols/colon.png"
 DEFAULT_EXCLAMATION_IMG_PATH = "./images/symbols/!.png"
 
+DEFAULT_SMALL_1_IMG_PATH     = "./images/symbols/small/1.png"
+DEFAULT_SMALL_2_IMG_PATH     = "./images/symbols/small/2.png"
+DEFAULT_SMALL_3_IMG_PATH     = "./images/symbols/small/3.png"
+DEFAULT_SMALL_4_IMG_PATH     = "./images/symbols/small/4.png"
+DEFAULT_SMALL_5_IMG_PATH     = "./images/symbols/small/5.png"
+DEFAULT_SMALL_6_IMG_PATH     = "./images/symbols/small/6.png"
+DEFAULT_SMALL_7_IMG_PATH     = "./images/symbols/small/7.png"
+DEFAULT_SMALL_8_IMG_PATH     = "./images/symbols/small/8.png"
+DEFAULT_SMALL_9_IMG_PATH     = "./images/symbols/small/9.png"
+DEFAULT_SMALL_X_IMG_PATH     = "./images/symbols/small/x.png"
+
 class Character
     attr_reader :symbols
 
     def initialize
         @symbols = {
-            "0" => Gosu::Image.new(DEFAULT_0_IMG_PATH          , :tileable => true),
-            "1" => Gosu::Image.new(DEFAULT_1_IMG_PATH          , :tileable => true),
-            "2" => Gosu::Image.new(DEFAULT_2_IMG_PATH          , :tileable => true),
-            "3" => Gosu::Image.new(DEFAULT_3_IMG_PATH          , :tileable => true),
-            "4" => Gosu::Image.new(DEFAULT_4_IMG_PATH          , :tileable => true),
-            "5" => Gosu::Image.new(DEFAULT_5_IMG_PATH          , :tileable => true),
-            "6" => Gosu::Image.new(DEFAULT_6_IMG_PATH          , :tileable => true),
-            "7" => Gosu::Image.new(DEFAULT_7_IMG_PATH          , :tileable => true),
-            "8" => Gosu::Image.new(DEFAULT_8_IMG_PATH          , :tileable => true),
-            "9" => Gosu::Image.new(DEFAULT_9_IMG_PATH          , :tileable => true),
-            "a" => Gosu::Image.new(DEFAULT_A_IMG_PATH          , :tileable => true),
-            "b" => Gosu::Image.new(DEFAULT_B_IMG_PATH          , :tileable => true),
-            "c" => Gosu::Image.new(DEFAULT_C_IMG_PATH          , :tileable => true),
-            "e" => Gosu::Image.new(DEFAULT_E_IMG_PATH          , :tileable => true),
-            "g" => Gosu::Image.new(DEFAULT_G_IMG_PATH          , :tileable => true),
-            "i" => Gosu::Image.new(DEFAULT_I_IMG_PATH          , :tileable => true),
-            "l" => Gosu::Image.new(DEFAULT_L_IMG_PATH          , :tileable => true),
-            "m" => Gosu::Image.new(DEFAULT_M_IMG_PATH          , :tileable => true),
-            "n" => Gosu::Image.new(DEFAULT_N_IMG_PATH          , :tileable => true),
-            "o" => Gosu::Image.new(DEFAULT_O_IMG_PATH          , :tileable => true),
-            "r" => Gosu::Image.new(DEFAULT_R_IMG_PATH          , :tileable => true),
-            "s" => Gosu::Image.new(DEFAULT_S_IMG_PATH          , :tileable => true),
-            "t" => Gosu::Image.new(DEFAULT_T_IMG_PATH          , :tileable => true),
-            "v" => Gosu::Image.new(DEFAULT_V_IMG_PATH          , :tileable => true),
-            "w" => Gosu::Image.new(DEFAULT_W_IMG_PATH          , :tileable => true),
-            ":" => Gosu::Image.new(DEFAULT_COLON_IMG_PATH      , :tileable => true),
-            "!" => Gosu::Image.new(DEFAULT_EXCLAMATION_IMG_PATH, :tileable => true)
+            "small_1" => Gosu::Image.new(DEFAULT_SMALL_1_IMG_PATH    , :tileable => true),
+            "small_2" => Gosu::Image.new(DEFAULT_SMALL_2_IMG_PATH    , :tileable => true),
+            "small_3" => Gosu::Image.new(DEFAULT_SMALL_3_IMG_PATH    , :tileable => true),
+            "small_4" => Gosu::Image.new(DEFAULT_SMALL_4_IMG_PATH    , :tileable => true),
+            "small_5" => Gosu::Image.new(DEFAULT_SMALL_5_IMG_PATH    , :tileable => true),
+            "small_6" => Gosu::Image.new(DEFAULT_SMALL_6_IMG_PATH    , :tileable => true),
+            "small_7" => Gosu::Image.new(DEFAULT_SMALL_7_IMG_PATH    , :tileable => true),
+            "small_8" => Gosu::Image.new(DEFAULT_SMALL_8_IMG_PATH    , :tileable => true),
+            "small_9" => Gosu::Image.new(DEFAULT_SMALL_9_IMG_PATH    , :tileable => true),
+            "small_x" => Gosu::Image.new(DEFAULT_SMALL_X_IMG_PATH    , :tileable => true),
+            "0"       => Gosu::Image.new(DEFAULT_0_IMG_PATH          , :tileable => true),
+            "1"       => Gosu::Image.new(DEFAULT_1_IMG_PATH          , :tileable => true),
+            "2"       => Gosu::Image.new(DEFAULT_2_IMG_PATH          , :tileable => true),
+            "3"       => Gosu::Image.new(DEFAULT_3_IMG_PATH          , :tileable => true),
+            "4"       => Gosu::Image.new(DEFAULT_4_IMG_PATH          , :tileable => true),
+            "5"       => Gosu::Image.new(DEFAULT_5_IMG_PATH          , :tileable => true),
+            "6"       => Gosu::Image.new(DEFAULT_6_IMG_PATH          , :tileable => true),
+            "7"       => Gosu::Image.new(DEFAULT_7_IMG_PATH          , :tileable => true),
+            "8"       => Gosu::Image.new(DEFAULT_8_IMG_PATH          , :tileable => true),
+            "9"       => Gosu::Image.new(DEFAULT_9_IMG_PATH          , :tileable => true),
+            "a"       => Gosu::Image.new(DEFAULT_A_IMG_PATH          , :tileable => true),
+            "b"       => Gosu::Image.new(DEFAULT_B_IMG_PATH          , :tileable => true),
+            "c"       => Gosu::Image.new(DEFAULT_C_IMG_PATH          , :tileable => true),
+            "e"       => Gosu::Image.new(DEFAULT_E_IMG_PATH          , :tileable => true),
+            "g"       => Gosu::Image.new(DEFAULT_G_IMG_PATH          , :tileable => true),
+            "i"       => Gosu::Image.new(DEFAULT_I_IMG_PATH          , :tileable => true),
+            "l"       => Gosu::Image.new(DEFAULT_L_IMG_PATH          , :tileable => true),
+            "m"       => Gosu::Image.new(DEFAULT_M_IMG_PATH          , :tileable => true),
+            "n"       => Gosu::Image.new(DEFAULT_N_IMG_PATH          , :tileable => true),
+            "o"       => Gosu::Image.new(DEFAULT_O_IMG_PATH          , :tileable => true),
+            "r"       => Gosu::Image.new(DEFAULT_R_IMG_PATH          , :tileable => true),
+            "s"       => Gosu::Image.new(DEFAULT_S_IMG_PATH          , :tileable => true),
+            "t"       => Gosu::Image.new(DEFAULT_T_IMG_PATH          , :tileable => true),
+            "v"       => Gosu::Image.new(DEFAULT_V_IMG_PATH          , :tileable => true),
+            "w"       => Gosu::Image.new(DEFAULT_W_IMG_PATH          , :tileable => true),
+            ":"       => Gosu::Image.new(DEFAULT_COLON_IMG_PATH      , :tileable => true),
+            "!"       => Gosu::Image.new(DEFAULT_EXCLAMATION_IMG_PATH, :tileable => true)
         }
     end
 

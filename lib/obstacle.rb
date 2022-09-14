@@ -5,7 +5,7 @@ class Obstacle
     attr_reader :x, :y, :removable
     attr_accessor :touch_boom
 
-    def initialize(x, y, removable = nil)
+    def initialize(x, y, removable = false)
         @touch_boom        = false
         @x, @y, @removable = x, y, removable
         @irremovable_img   = Gosu::Image.new(DEFAULT_IRREMOVABLE_IMG_PATH, :tileable => true)

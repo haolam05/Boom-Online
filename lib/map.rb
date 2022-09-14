@@ -25,7 +25,7 @@ class Map
     attr_reader :background_img, :map_items, :screen_w, :screen_h, :tile_w, :tile_h, :window, :level
     attr_accessor :obstacles, :opponent_players, :empty_positions, :players, :summon_boss
 
-    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 14)
+    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 4)
         @window              = window
         @screen_w, @screen_h = screen_w, screen_h
         @tile_w, @tile_h     = tile_w, tile_h
@@ -214,7 +214,7 @@ private
 
     # returns an array of irremovable obstacles
     def hard_stones
-        @obstacles.select { |obstacle| !obstacle.removable }
+        @obstacles.select { |obstacle| !obstacle.removable } 
     end
 
     # returns an array of removable obstacles

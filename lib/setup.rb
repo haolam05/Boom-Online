@@ -61,12 +61,12 @@ class SetUp
         @players[1].boom_length = 1
 
         ### set default boom's quantity
-        @players[0].curr_boom_quantity = 2
-        @players[1].curr_boom_quantity = 2
+        @players[0].curr_boom_quantity = 1
+        @players[1].curr_boom_quantity = 1
 
         ### set speed
-        @players[0].speed = 3
-        @players[1].speed = 3
+        @players[0].speed = 10
+        @players[1].speed = 1
 
         ### set item keys
         @players[0].life_key        = Gosu::KbN              ; @players[0].items[Gosu::KbN]              = PlayerItem.new("life", "./images/items/life.png")                       ; @players[0].items_quantity[Gosu::KbN]              = 1

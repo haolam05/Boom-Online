@@ -1,5 +1,6 @@
 require_relative 'boom'
 require_relative 'player_item'
+require_relative 'character'
 
 DEFAULT_DYING_BUBBLE_IMG    = "./images/characters/bubble.png"
 DEFAULT_DYING_STATE_1_TIME  = 3_000   # 3 seconds        ---> savable
@@ -125,6 +126,10 @@ class Player
         @items.each do |item_key, item|
             self.draw_gray_background(x_offset, y_offset, item.width, item.height) if self.items_quantity[item_key] <= 0
             item.draw(x_offset, y_offset, 0)
+            
+            item_quantity = @items_quantity[item_key]   # draws the item quantity
+            Character.new.symbols["small_#{item_quantity < 10 ? item_quantity : "x"}"].draw(x_offset + 40, y_offset + 40) if item_quantity > 0
+
             x_offset += item.width
         end
 

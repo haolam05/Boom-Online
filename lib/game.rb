@@ -176,6 +176,15 @@ private
     @players.each              { |player  | (player.booms  = [] ; player.reset_to_normal_state) if player.is_a?(Player)       }   # remove all booms, including
     @map.opponent_players.each { |opponent| opponent.booms = []                                 if opponent.is_a?(PirateBoss) }   # that are planted but not yet exploded
 
+    # adds more player_items every map
+    @players.each do |player|
+      if player.is_a?(Player)
+        player.items_quantity[player.life_key       ] += 1
+        player.items_quantity[player.boom_shield_key] += 2
+        player.items_quantity[player.spring_key     ] += 2
+      end
+    end
+
     sleep(3)  # a little delay is added so that the result won't disaapear too fast
   end
 
@@ -205,10 +214,10 @@ private
       when "boom_length" ; player.boom_length                            += 1
       when "items_radar" ; player.items_quantity[player.items_radar_key] += 1
       when "booms_radar" ; player.items_quantity[player.booms_radar_key] += 1
-      when "dart"        ; player.items_quantity[player.dart_key]        += 1
-      when "life"        ; player.items_quantity[player.life_key]        += 1
+      when "dart"        ; player.items_quantity[player.dart_key       ] += 1
+      when "life"        ; player.items_quantity[player.life_key       ] += 1
       when "boom_shield" ; player.items_quantity[player.boom_shield_key] += 1
-      when "spring"      ; player.items_quantity[player.spring_key]      += 1
+      when "spring"      ; player.items_quantity[player.spring_key     ] += 1
       end
 
       @map.remove_item(item)  # item disappear on map after being picked up by player
