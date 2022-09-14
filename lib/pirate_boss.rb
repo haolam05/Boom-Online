@@ -113,17 +113,6 @@ class PirateBoss < Pirate
         dying? ? Gosu.milliseconds - @time_since_got_boom >= DEFAULT_DYING_STATE_1_TIME : false
     end
 
-    # returns true it there is an obstacle in given direction; false otherwise
-    def obstacle?(obstacles, direction, x = @x, y = @y)
-        case direction
-        when "l" ; obstacles.any? { |obstacle| (x          == obstacle.x + obstacle.width ) && (obstacle.y.between?(y, y + height - o_y) || (obstacle.y + obstacle.height).between?(y + o_y, y + height)) }  
-        when "r" ; obstacles.any? { |obstacle| (x + width  == obstacle.x                  ) && (obstacle.y.between?(y, y + height - o_y) || (obstacle.y + obstacle.height).between?(y + o_y, y + height)) }
-        when "u" ; obstacles.any? { |obstacle| (y          == obstacle.y + obstacle.height) && (obstacle.x.between?(x, x + width  - o_x) || (obstacle.x + obstacle.width ).between?(x + o_x, x + width )) }
-        when "d" ; obstacles.any? { |obstacle| (y + height == obstacle.y                  ) && (obstacle.x.between?(x, x + width  - o_x) || (obstacle.x + obstacle.width ).between?(x + o_x, x + width )) }
-        end
-    end
-
-
 private
     # draw the number of lives remaining above pirate boss head
     def draw_life_count

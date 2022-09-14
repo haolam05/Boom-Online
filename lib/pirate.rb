@@ -53,12 +53,12 @@ class Pirate
     # returns true it there is an obstacle in given direction; false otherwise
     def obstacle?(obstacles, direction, x = @x, y = @y)
         case direction
-        when "l" ; obstacles.any? { |obstacle| x == (obstacle.x + obstacle.width)  &&  (y.between?(obstacle.y, obstacle.y + obstacle.height - o_y) || (y + self.height - o_y).between?(obstacle.y, obstacle.y + obstacle.height)) }
-        when "r" ; obstacles.any? { |obstacle| (x + self.width)  == obstacle.x     &&  (y.between?(obstacle.y, obstacle.y + obstacle.height - o_y) || (y + self.height - o_y).between?(obstacle.y, obstacle.y + obstacle.height)) }
-        when "u" ; obstacles.any? { |obstacle| (y == obstacle.y + obstacle.height) &&  (x.between?(obstacle.x, obstacle.x + obstacle.width  - o_x) || (x + self.width  - o_x).between?(obstacle.x, obstacle.x + obstacle.width))  }
-        when "d" ; obstacles.any? { |obstacle| (y + self.height) == obstacle.y     &&  (x.between?(obstacle.x, obstacle.x + obstacle.width  - o_x) || (x + self.width  - o_x).between?(obstacle.x, obstacle.x + obstacle.width))  }
+        when "l" ; obstacles.any? { |obstacle| (x          == obstacle.x + obstacle.width ) && (obstacle.y.between?(y, y + height - o_y) || (obstacle.y + obstacle.height).between?(y + o_y, y + height)) }  
+        when "r" ; obstacles.any? { |obstacle| (x + width  == obstacle.x                  ) && (obstacle.y.between?(y, y + height - o_y) || (obstacle.y + obstacle.height).between?(y + o_y, y + height)) }
+        when "u" ; obstacles.any? { |obstacle| (y          == obstacle.y + obstacle.height) && (obstacle.x.between?(x, x + width  - o_x) || (obstacle.x + obstacle.width ).between?(x + o_x, x + width )) }
+        when "d" ; obstacles.any? { |obstacle| (y + height == obstacle.y                  ) && (obstacle.x.between?(x, x + width  - o_x) || (obstacle.x + obstacle.width ).between?(x + o_x, x + width )) }
         end
-    end
+    end    
 
     # return the opposite direction based on current direction
     def opposite_direction

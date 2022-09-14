@@ -9,7 +9,7 @@ class GameWindow < Gosu::Window
   attr_reader :map
   
   def initialize
-    super DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, fullscreen: true#, update_interval: 0_001
+    super DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, fullscreen: true
     self.caption = DEFAULT_SCREEN_CAPTION
     @game        = SetUp.new(self)
     @audio       = Sound.new
