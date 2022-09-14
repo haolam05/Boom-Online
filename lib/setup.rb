@@ -65,7 +65,7 @@ class SetUp
         @players[1].curr_boom_quantity = 1
 
         ### set speed
-        @players[0].speed = 10
+        @players[0].speed = 1
         @players[1].speed = 1
 
         ### set item keys

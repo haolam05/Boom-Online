@@ -6,22 +6,25 @@ require_relative 'setup'
 require_relative 'player_item'
 
 class GameWindow < Gosu::Window
+  attr_reader :map
+  
   def initialize
-    super DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, fullscreen: false
+    super DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, fullscreen: true#, update_interval: 0_001
     self.caption = DEFAULT_SCREEN_CAPTION
     @game        = SetUp.new(self)
-    @bg_song     = Sound.new.background
+    @audio       = Sound.new
+    @bg_song     = @audio.background
   end
 
   # called once every {#update_interval} milliseconds --- update the following things on screen based on current states
   def update
     case @game.setup_state
-    when "battle_options"  ; (@game.update_battle_options(   self.mouse_x, self.mouse_y      ) ; Sound.new.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
-    when "player1_options" ; (@game.update_player_options(1, self.mouse_x, self.mouse_y      ) ; Sound.new.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
-    when "player2_options" ; (@game.update_player_options(2, self.mouse_x, self.mouse_y      ) ; Sound.new.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
-    when "summary"         ; (@game.update_summary(          self.mouse_x, self.mouse_y, self) ; Sound.new.mouse_click.play) if self.button_down?(Gosu::MS_LEFT) ; initialize_game
-    when "start_game"      ; (@game.update_pause_button(     self.mouse_x, self.mouse_y      ) ; Sound.new.mouse_click.play) if self.button_down?(Gosu::MS_LEFT) ; update_timer ; update_player_and_boom_positions ; update_map
-    when "pause"           ; (@game.update_pause_button(     self.mouse_x, self.mouse_y      ) ; Sound.new.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
+    when "battle_options"  ; (@game.update_battle_options(   self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
+    when "player1_options" ; (@game.update_player_options(1, self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
+    when "player2_options" ; (@game.update_player_options(2, self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
+    when "summary"         ; (@game.update_summary(          self.mouse_x, self.mouse_y, self) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT) ; initialize_game
+    when "start_game"      ; (@game.update_pause_button(     self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT) ; update_timer ; update_player_and_boom_positions ; update_map
+    when "pause"           ; (@game.update_pause_button(     self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
     when "gameover"        ; reset_game
     end
   end
@@ -109,7 +112,7 @@ class GameWindow < Gosu::Window
   end
 
   # fits the [x, y] position to the closest tile(ex: for the boom to fit nicely inside the tile)
-  def get_closet_tile_coor(x, y)
+  def get_closet_tile_coor(x, y, n = 1)
     x_coor = x + (x % DEFAULT_TILE_WIDTH  <= DEFAULT_TILE_WIDTH  / 2 ? 0 : DEFAULT_TILE_WIDTH )
     y_coor = y + (y % DEFAULT_TILE_HEIGHT <= DEFAULT_TILE_HEIGHT / 2 ? 0 : DEFAULT_TILE_HEIGHT)
     [(x_coor / DEFAULT_TILE_WIDTH) * DEFAULT_TILE_WIDTH, (y_coor / DEFAULT_TILE_HEIGHT) * DEFAULT_TILE_HEIGHT]
@@ -137,7 +140,7 @@ class GameWindow < Gosu::Window
     
     if just_start
       @time_elapsed = Gosu.milliseconds
-      Sound.new.game_start.play if @game.setup_state == "start_game"
+      @audio.game_start.play if @game.setup_state == "start_game"
     end
 
     @time_since_game_start = Gosu.milliseconds - @time_elapsed - (@total_time_pause.nil? ? 0 : @total_time_pause) - @add_on_time # subtract elapsed time and pause time from the real game time
@@ -347,7 +350,7 @@ private
   def draw_end_message
     if self.gameover?
       draw_message(@symbols.end_message) 
-      Sound.new.game_over.play
+      @audio.game_over.play
     end
   end
 

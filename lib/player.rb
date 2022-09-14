@@ -16,6 +16,7 @@ class Player
         @l, @r, @u, @d, @b, @got_boom   = false, false, false, false, false, false
         @booms, @items, @items_quantity = [], {}, {}
         @curr_direction                 = nil
+        @symbols                        = Character.new.symbols
     end
 
     # plants a boom at the position of the player
@@ -126,9 +127,9 @@ class Player
         @items.each do |item_key, item|
             self.draw_gray_background(x_offset, y_offset, item.width, item.height) if self.items_quantity[item_key] <= 0
             item.draw(x_offset, y_offset, 0)
-            
-            item_quantity = @items_quantity[item_key]   # draws the item quantity
-            Character.new.symbols["small_#{item_quantity < 10 ? item_quantity : "x"}"].draw(x_offset + 40, y_offset + 40) if item_quantity > 0
+
+            item_quantity = @items_quantity[item_key]   # draws the item quantity, 10 is the width of the small number image
+            @symbols["small_#{item_quantity < 10 ? item_quantity : "x"}"].draw(x_offset + (DEFAULT_TILE_WIDTH - 10), y_offset + (DEFAULT_TILE_WIDTH - 10)) if item_quantity > 0
 
             x_offset += item.width
         end
