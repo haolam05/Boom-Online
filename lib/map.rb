@@ -21,12 +21,13 @@ DEFAULT_BACKGROUND_IMG_PATH               = "./images/background/black.png"
 DEFAULT_REMOVABLE_OBSTACLE_EXPLOSION_TYPE = "1" # "1"  : maximum 1 soft stone(in a series of adjacent stones) exploded at a time regardless of boom length
                                                 # "1+" : depending on boom length, any number of adjacent soft stones can be exploded
 DEFAULT_MAX_LEVEL                         = 16
+DEFAULT_RETRIES                           = 2
 
 class Map
     attr_reader :background_img, :map_items, :screen_w, :screen_h, :tile_w, :tile_h, :window, :level, :allowed_retries
     attr_accessor :obstacles, :opponent_players, :empty_positions, :players, :summon_boss
 
-    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 1, allowed_retries = 2)
+    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 16, allowed_retries = DEFAULT_RETRIES)
         @window              = window
         @screen_w, @screen_h = screen_w, screen_h
         @tile_w, @tile_h     = tile_w, tile_h
@@ -216,12 +217,12 @@ private
 
     # returns an array of irremovable obstacles
     def hard_stones
-        @obstacles.select { |obstacle| !obstacle.removable } 
+        @obstacles.select { |obstacle| !obstacle.nil? && obstacle.is_a?(Obstacle) && !obstacle.removable } 
     end
 
     # returns an array of removable obstacles
     def soft_stones
-        @obstacles.select { |obstacle| obstacle.removable }
+        @obstacles.select { |obstacle|! obstacle.nil? && obstacle.is_a?(Obstacle) && obstacle.removable }
     end
 
     # randomly generate obstacles based on their generated percentage

@@ -168,21 +168,25 @@ private
     case @game.battle_option
     when "solo" ; @game = SetUp.new(self)
     when "team"
-      if @map.opponent_players.empty? && @map.level < @map.max_level  # team won  ---> continue on to the next level
-        @map   = Map.new(@players, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, screen_w, screen_h, self, @game.battle_option, @map.level + 1)                         ; @game.setup_state = "start_game"
-        @retry = false
-      else                                                            # team lost ---> try again?
-        if @map.allowed_retries > 0
+      if @map.opponent_players.empty?         # team won
+        if @map.level < @map.max_level          # continue on to the next level if there is one
+          @map   = Map.new(@players, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, screen_w, screen_h, self, @game.battle_option, @map.level + 1)                         ; @game.setup_state = "start_game"
+          @retry = false
+        elsif @map.level == @map.max_level      # won all levels  ---> reset game
+          @game = SetUp.new(self)
+        end
+      else                                    # team lost
+        if @map.allowed_retries > 0             # try again if still has retries
           @map   = Map.new(@players, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, screen_w, screen_h, self, @game.battle_option, @map.level, @map.allowed_retries - 1) ; @game.setup_state = "start_game"
           @retry = true
-        else
+        else                                    # no retries left ---> reset game
           @game = SetUp.new(self)
         end
       end
     end
 
     @reset_game = true
-    @players.each              { |player  | (player.booms  = [] ; player.reset_to_normal_state) if player.is_a?(Player)       }   # remove all booms, including
+    @players.each              { |player  | (player.booms  = [] ; player.reset_to_normal_state) if player.is_a?(Player)       }   # remove all booms, including booms
     @map.opponent_players.each { |opponent| opponent.booms = []                                 if opponent.is_a?(PirateBoss) }   # that are planted but not yet exploded
 
     # adds more player_items every map
