@@ -331,4 +331,3 @@ class SetUp
         @pause_button_position = [x1, x2, y1, y2]
     end
 end
- 

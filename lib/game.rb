@@ -169,22 +169,30 @@ private
     when "solo" ; @game = SetUp.new(self)
     when "team"
       if @map.opponent_players.empty? && @map.level < @map.max_level  # team won  ---> continue on to the next level
-        @map = Map.new(@players, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, screen_w, screen_h, self, @game.battle_option, @map.level + 1) ; @game.setup_state = "start_game"
-      else
-        @game = SetUp.new(self)
+        @map   = Map.new(@players, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, screen_w, screen_h, self, @game.battle_option, @map.level + 1)                         ; @game.setup_state = "start_game"
+        @retry = false
+      else                                                            # team lost ---> try again?
+        if @map.allowed_retries > 0
+          @map   = Map.new(@players, DEFAULT_TILE_WIDTH, DEFAULT_TILE_HEIGHT, screen_w, screen_h, self, @game.battle_option, @map.level, @map.allowed_retries - 1) ; @game.setup_state = "start_game"
+          @retry = true
+        else
+          @game = SetUp.new(self)
+        end
       end
     end
-    
+
     @reset_game = true
     @players.each              { |player  | (player.booms  = [] ; player.reset_to_normal_state) if player.is_a?(Player)       }   # remove all booms, including
     @map.opponent_players.each { |opponent| opponent.booms = []                                 if opponent.is_a?(PirateBoss) }   # that are planted but not yet exploded
 
     # adds more player_items every map
-    @players.each do |player|
-      if player.is_a?(Player)
-        player.items_quantity[player.life_key       ] += 1
-        player.items_quantity[player.boom_shield_key] += 2
-        player.items_quantity[player.spring_key     ] += 2
+    if !@retry
+      @players.each do |player|
+        if player.is_a?(Player)
+          player.items_quantity[player.life_key       ] += 1
+          player.items_quantity[player.boom_shield_key] += 2
+          player.items_quantity[player.spring_key     ] += 2
+        end
       end
     end
 
