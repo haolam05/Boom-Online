@@ -94,7 +94,7 @@ class Map
         items_radar_in_use = @players.any? { |player| player.items[player.items_radar_key].in_use?(player, player.items_radar_key) }
         if items_radar_in_use
             self.draw(
-                @map_items.select { |item| item.life_count == 1 || close_to_players(item)[0] }
+                @map_items.select { |item| item.life_count == 2 && close_to_players(item)[0] }
             )
         end
     end
