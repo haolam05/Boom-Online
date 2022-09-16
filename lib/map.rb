@@ -27,7 +27,7 @@ class Map
     attr_reader :background_img, :map_items, :screen_w, :screen_h, :tile_w, :tile_h, :window, :level, :allowed_retries
     attr_accessor :obstacles, :opponent_players, :empty_positions, :players, :summon_boss
 
-    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 16, allowed_retries = DEFAULT_RETRIES)
+    def initialize(players, tile_w, tile_h, screen_w, screen_h, window, type = "solo", level = 1, allowed_retries = DEFAULT_RETRIES)
         @window              = window
         @screen_w, @screen_h = screen_w, screen_h
         @tile_w, @tile_h     = tile_w, tile_h
@@ -269,7 +269,7 @@ private
 
     # draw whole map
     def draw(*arrs)
-        arrs.each { |arr| arr.each { |element| element.is_a?(PirateBoss) ? element.draw(@players, self) : element.draw } }
+        arrs.each { |arr| arr.each { |element| (element.is_a?(PirateBoss) ? element.draw(@players, self) : element.draw) if element.is_a?(MapItem) || element.is_a?(Pirate) || element.is_a?(Obstacle) } }
     end
 
     # returns an array of item names and their percentage of being generated
