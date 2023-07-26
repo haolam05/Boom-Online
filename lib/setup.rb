@@ -5,7 +5,7 @@ require_relative 'player_item'
 
 DEFAULT_SCREEN_WIDTH      = 1000
 DEFAULT_SCREEN_HEIGHT     = 1000
-DEFAULT_GAME_DURATION     = 180_000 # 180 seconds -> 3 minutes
+DEFAULT_GAME_DURATION     = 300_000 # 300 seconds -> 5 minutes
 DEFAULT_SCREEN_CAPTION    = "Boom Online"
 DEFAULT_MESSAGE_SHOW_TIME = 3_000  # 3 seconds
 DEFAULT_TILE_WIDTH        = 50

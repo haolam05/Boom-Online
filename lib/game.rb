@@ -25,7 +25,7 @@ class GameWindow < Gosu::Window
     when "summary"         ; (@game.update_summary(          self.mouse_x, self.mouse_y, self) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT) ; initialize_game
     when "start_game"      ; (@game.update_pause_button(     self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT) ; update_timer ; update_player_and_boom_positions ; update_map
     when "pause"           ; (@game.update_pause_button(     self.mouse_x, self.mouse_y      ) ; @audio.mouse_click.play) if self.button_down?(Gosu::MS_LEFT)
-    when "gameover"        ; reset_game
+    when "gameover"        ; reset_game; update_timer(true)
     end
   end
 
