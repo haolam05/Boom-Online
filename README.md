@@ -17,8 +17,8 @@ After running the ruby script, the user will go through the following:
     For the "team" option, there are 16 different levels, from easy to difficult, where level 16 is the final boss.
    
   II. Pick the character and boom for player #1 --- Page 2
-    There are a variety of character and boom images for user to pick. They are just images and have no effect on the game.
-    The keys corressponding to the player will present on the screen
+    There are a variety of character and boom images for users to pick. They are just images and have no effect on the game.
+    The keys corresponding to the player will be present on the screen
     ---> Click "NEXT" to proceed
 
   III. Pick the character and boom for player #2 --- Page 3
