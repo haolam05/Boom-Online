@@ -31,8 +31,7 @@ After running the ruby script, the user will go through the following:
 
 After clicking the "START" button, the game starts.
 
-
-
+![demo-level-1](https://github.com/haolam05/Boom-Online/assets/71291057/a19b879a-977c-44fa-960f-b389127a99a9)
 ![demo-level-2](https://github.com/haolam05/Boom-Online/assets/71291057/9652f467-1141-43e1-ae20-ebd291ab364f)
 ![demo-level-3-4](https://github.com/haolam05/Boom-Online/assets/71291057/d523caab-84d9-4e58-ab97-416b4ded8d68)
 ![demo-level-5](https://github.com/haolam05/Boom-Online/assets/71291057/2ab6eec9-1ad0-44a1-a673-c9f16b9fa0c8)
