@@ -1,4 +1,4 @@
-# Boom-Online (aka Pop Tag, Crazy Arcade, etc)
+# Boom-Online (a.k.a "Pop Tag", "Crazy Arcade")
 
 This is my version of "Boom Online". This is my favorite game when I was a kid. I tried my best to replicate the rules of the game. This is a great project for
 learning how to build a game using Gosu.
