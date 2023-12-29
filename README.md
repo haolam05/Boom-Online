@@ -4,7 +4,6 @@ This is my version of "Boom Online". This is my favorite game when I was a kid. 
 learning how to build a game using Gosu.
 
 
-
 # To play, run:
   1) bundle install
   2) ruby ./lib/game.rb
@@ -45,4 +44,3 @@ After clicking the "START" button, the game starts.
 ![demo-level-14](https://github.com/haolam05/Boom-Online/assets/71291057/2565b5e3-3fa2-45c6-8468-4297942c95e1)
 ![demo-level-15](https://github.com/haolam05/Boom-Online/assets/71291057/f60f85f0-aee3-4270-9062-252712de054c)
 ![demo-level-16](https://github.com/haolam05/Boom-Online/assets/71291057/161944dc-833a-441e-ba1b-a91063eae6f7)
-
