@@ -4,7 +4,6 @@ This is my version of "Boom Online". This is my favorite game when I was a kid. 
 learning how to build a game using Gosu.
 
 
-
 # To play, run:
   1) bundle install
   2) ruby ./lib/game.rb
