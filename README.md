@@ -1,10 +1,13 @@
 # Boom-Online (a.k.a "Pop Tag", "Crazy Arcade")
 
-This is my version of "Boom Online". This is my favorite game when I was a kid. I tried my best to replicate the rules of the game. This is a great project for
-learning how to build a game using Gosu.
+  - This is my version of "Boom Online". This is my favorite game when I was a kid. I tried my best to replicate the rules of the game.
+  - Adapted the rules and mechanics of the classic "Boom Online" (or "Crazy Arcade") game to create a customized version using Ruby and the Gosu gem.
+  - Implemented character movement, interactive gameplay elements, and graphical user interface enhancements while adhering to the original game's rule set.
+  - Gained hands-on experience in game development techniques and Ruby programming while ensuring the faithful recreation of the game's core mechanics.
+  - Demonstrated proficiency in adapting existing game concepts and leveraging programming tools to create engaging and rule-compliant gaming experiences.
 
-
-# To play, run:
+## Installation Guide
+To play, run:
   1) bundle install
   2) ruby ./lib/game.rb
 
