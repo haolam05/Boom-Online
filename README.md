@@ -12,7 +12,6 @@ To play, run:
   2) ruby ./lib/game.rb
 
 
-
 After running the ruby script, the user will go through the following:
   I. Pick battle options  --- Page 1
     There are 2 battle options
