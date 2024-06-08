@@ -6,7 +6,6 @@
   - Gained hands-on experience in game development techniques and Ruby programming while ensuring the faithful recreation of the game's core mechanics.
   - Demonstrated proficiency in adapting existing game concepts and leveraging programming tools to create engaging and rule-compliant gaming experiences.
 
-
 ## Installation Guide
 To play, run:
   1) bundle install
